@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sample.jee</groupId>
+		<artifactId>jee</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>ear-app</artifactId>
+	<packaging>ear</packaging>
+	<name>ear-app</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sample.jee</groupId>
+			<artifactId>ejb-module</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.sample.jee</groupId>
+			<artifactId>jsf-module</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!--Ear plugin -creating the ear - watch out skinny WARS! -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${ear-plugin-version}</version>
+				<configuration>
+					<finalName>ear-app</finalName>
+					<defaultJavaBundleDir>lib/</defaultJavaBundleDir>
+					<skinnyWars>true</skinnyWars>
+					<modules>
+						<ejbModule>
+							<groupId>com.sample.jee</groupId>
+							<artifactId>ejb-module</artifactId>
+						</ejbModule>
+						<webModule>
+							<groupId>com.sample.jee</groupId>
+							<artifactId>jsf-module</artifactId>
+							<contextRoot>jsf-module</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
