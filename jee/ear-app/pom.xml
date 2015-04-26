@@ -10,7 +10,6 @@
 	<packaging>ear</packaging>
 	<name>ear-app</name>
 	
-	
 	<dependencies>
 		<dependency>
 			<groupId>com.sample.jee</groupId>
